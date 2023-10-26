@@ -1,0 +1,39 @@
+public static void main(String[] a){
+
+        List<String> strs = Arrays.asList("kann","kann","dakjsdjasd","dasjdk");
+        Map<String,Long> namesCount = strs.stream().collect(Collectors.groupingBy(Function.identity(),Collectors.counting()));
+        System.out.println(namesCount);
+        String k = " tinking does not overcome fear action does";
+         k.chars()
+                .mapToObj(s->Character.toLowerCase(Character.valueOf((char)s)))
+                .collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting()))
+                .entrySet()
+                .stream()
+                .filter(entry->entry.getValue()==1L)
+                .map(entry->entry.getKey())
+                .findFirst()
+                .ifPresent(System.out::println);
+        List<Integer> list = Arrays.asList(99,1,2,3,4,4,5,6,9,7,5,109);
+        Set<Integer> set = new HashSet<>();
+        list.stream().filter(n->!set.add(n)).forEach(System.out::println);
+        list.stream().findFirst().ifPresent(System.out::println);
+        list.stream().max(Integer::compare).ifPresent(System.out::println);
+            list.stream().filter(n->n%2!=0)
+                    .map(n->n*n)
+                    .forEach(System.out::println);
+        List<Integer> listOne = Arrays.asList(11,132,43,164,85,96,39,137,45);
+        listOne.stream().filter(n->n%2==0)
+                .map(n->n*2).forEach(System.out::println);
+        List<Integer> listO = Arrays.asList(1,2,3,4,5,6,7,8,9,10);
+       listO.stream().filter(n->n%2==0).map(n->n*n)
+               .forEach(System.out::println);
+       listOne.stream().map(s->s+"").filter(n->n.startsWith("1"))
+               .forEach(n->System.out.println("new "+ n));
+
+
+        int sum = Arrays.stream(new int[]{1, 2, 3})
+                .filter(i -> i >= 2)
+                .map(i -> i * 3)
+                .sum();
+        System.out.println(sum);
+    }
